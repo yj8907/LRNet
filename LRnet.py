@@ -18,8 +18,8 @@ CONV_WEIGHT_DECAY = 0.00004
 CONV_WEIGHT_STDDEV = 0.1
 FC_WEIGHT_DECAY = 0.00004
 FC_WEIGHT_STDDEV = 0.01
-RESNET_VARIABLES = 'resnet_variables'
-UPDATE_OPS_COLLECTION = 'resnet_update_ops'  # must be grouped with training op
+LRNET_VARIABLES = 'lrnet_variables'
+UPDATE_OPS_COLLECTION = 'lrnet_update_ops'  # must be grouped with training op
 IMAGENET_MEAN_BGR = [103.062623801, 115.902882574, 123.151630838, ]
 
 tf.app.flags.DEFINE_integer('input_size', 224, "input image size")
@@ -352,7 +352,7 @@ def _get_variable(name,
                   dtype='float',
                   trainable=True):
     "A little wrapper around tf.get_variable to do weight decay and add to"
-    "resnet collection"
+    "lrnet collection"
     if weight_decay > 0:
         regularizer = tf.contrib.layers.l2_regularizer(weight_decay)
     else:
